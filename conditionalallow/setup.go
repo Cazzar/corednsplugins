@@ -78,4 +78,4 @@ func setup(c *caddy.Controller) error {
 	return nil
 }
 
-const pluginname = "limitto"
+const pluginname = "conditionalallow"
