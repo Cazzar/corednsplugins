@@ -1,6 +1,7 @@
 package docker
 
 import (
+	"strconv"
 	"github.com/coredns/coredns/core/dnsserver"
 	"github.com/coredns/coredns/plugin"
 	clog "github.com/coredns/coredns/plugin/pkg/log"
@@ -47,9 +48,9 @@ func setup(c *caddy.Controller) error {
 			break;
 		case "ttl":
 			if !c.NextArg() { return plugin.Error("rdns", c.Err("TTL was not provided"))}
-			val, err := strconv.ParseUint(c.Val())
+			val, err := strconv.ParseUint(c.Val(), 10, 32)
 			if err != nil { return plugin.Error("rdns", err) }
-			conf.TTL = val
+			conf.TTL = uint32(val)
 		case "}":
 			break
 		case "{":
